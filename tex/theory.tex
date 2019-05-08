@@ -1,11 +1,13 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage[version=4]{mhchem}
 
 \begin{document}
-\section{Reflection and Transmission on a Simple Boundary at Normal Incidence}
+\section{Theory}
+\subsection{Reflection and Transmission on a Simple Boundary at Normal Incidence}
     \begin{figure}
-        \includegraphics[width=\linewidth]{simple_boundary.png}
+        \includegraphics[height=7cm]{simple_boundary.png}
         \caption{Simple Boundary}
         \label{fig:simp}
     \end{figure}
@@ -32,7 +34,7 @@
     Figure \ref{fig:norm} pictorially shows these conditions.
 
     \begin{figure}
-        \includegraphics[width=\linewidth]{simple_boundary_normal.png}
+        \includegraphics[height=6cm]{simple_boundary_normal.png}
         \caption{Light Normally incident on surface with electric and magnetic vectors shown}
         \label{fig:norm}
     \end{figure}
@@ -59,7 +61,7 @@
 
     As expected for a non-absorbing medium $$ T + R = 1 $$
 
-\section{Reflection and Transmission at Oblique Incidence}
+\subsection{Reflection and Transmission at Oblique Incidence}
     To extend this analysis to oblique incidence, we introduce the tilted optical admittance $\eta$ which connects the components of the electric and magnetic fields parallel to the boundary
     \begin{equation}
         \eta = \frac{H^{\parallel}}{E^{\parallel}}
@@ -75,14 +77,14 @@
     \end{align}
     Also of note is that this analysis can be readily extended to absorbing media if $\theta$ is allowed to be complex.
 
-\section{Reflection of a Thin Film}
+\subsection{Reflection of a Thin Film}
     We turn our attention to the geometry seen in Figure \ref{fig:film}. We first consider the tangential components of the electric and magnetic fields at boundary b, while introducing the notation $+$ referring to the positive-travelling wave and $-$ referring to waves traveling in the opposite direction.
     \begin{align}
         E_b &= E_{1b}^+ + E_{1b}^- \\
         H_b &= \eta_1 E_{1b}^+ - \eta_1 E_{1b}^-    
     \end{align}
     \begin{figure}
-        \includegraphics[width=\linewidth]{thin_film.png}
+        \includegraphics[height = 6cm]{thin_film.png}
         \caption{Plane wave incident on a thin film}
         \label{fig:film}
     \end{figure}
@@ -154,9 +156,9 @@
     \end{equation*}
     is known as the \emph{characteristic matrix} of the film.   
 
-\section{Reflectance of an Assembly of Thin Films}
+\subsection{Reflectance of an Assembly of Thin Films}
     \begin{figure}
-        \includegraphics[width=\linewidth]{film_assembly.png}
+        \includegraphics[height=6cm]{film_assembly.png}
         \caption{An assembly of thin films}
         \label{fig:assem}
     \end{figure}
@@ -180,7 +182,7 @@
     \end{equation}
     The admittance and reflectance of the assembly are calculated as described before in (\ref{eq:filmadmit}) and (\ref{eq:filmreflec})
 
-\section{Transmission through a Thin Film Assembly}
+\subsection{Transmission through a Thin Film Assembly}
     We calculate the net irradiance leaving the assembly as
     \begin{align}
         I_k &= \frac{1}{2}\Re\left(E_k H_k^*\right) \\
@@ -207,7 +209,7 @@
     \end{equation}
     For the transmittance to have physical meaning, the incident medium must be transparent. That is, $\eta_0$ must be real
 
-\section{Quarter and Half-Wave Thickness}
+\subsection{Quarter and Half-Wave Thickness}
     Of considerable importance in thin film optical assemblies are layers where the optical thickness are an integer number of quarter waves. That is, if
     \begin{equation*}  
         \delta = \frac{m \pi}{2}, \text{	} m = 0, 1, 2, 3 \ldots
@@ -231,4 +233,75 @@
         \end{bmatrix}
     \end{equation*}
     Of more importance with the quarter wavelength layer is what happens in a multilayer film consisting of high-index and low-index layers. Light reflected within the low-index layers will experience a phase-shift of $\pi$, while light reflected in the high-index layers will not experience a phase shift. Therefore, all light coming off the front surface of the multilayer will be in-phase, and the film can have an extraordinarily high reflectance for a limited range of wavelengths. This phenomenon is of extreme importance to devices discussed later.
+
+    Because thickness of quarter-waves are so useful and common for filter design, only layers that are integer multiple of quarter wavelengths will be considered going forward. This allows us to introduce a new notation. The letter H will represent a quarter-wave layer made of a material with a higher index of refraction, while L represents a layer with a lower index of refraction. For example, \ce{HLL} represents a structure where the incident light first hits a high refractive index, quarter-wave laver, followed by a half-wavelength layer of low refractive index material.
+
+\subsection{Band-Pass Filters}
+    To create a narrow-band filter, we consider a device based on the Fabry-Perot interferometer. A diagram of which is seen in Figure \ref{fig:etalon}.
+    \begin{figure}
+        \includegraphics[height=6cm]{etalon.png}
+        \caption{A Fabry-Perot Etalon}
+        \label{fig:etalon}        
+    \end{figure}
+    By replacing the reflective coatings with quarter-wave assemblies and instead of using a spacer, using a half-wave layer, an \emph{all-dielectric Fabry-Perot filter} can be created. The operating principle of this device is that light incident on the reflective coatings interferes in such a way that very strong peaks are seen at $\delta = m \pi$ where $\delta$, is defined as before $$ \delta = \frac{2 \pi n_s d_s \cos \theta_s}{\lambda} $$
+
+    The transmittance of the etalon, under the assumption that there is no phase change on reflection, $n_s = 1$ and non-absorbing layers is
+    \begin{equation}
+        T = \frac{1}{1 + F \sin^2 \delta}
+    \end{equation}
+    where
+    \begin{equation}
+        F = \frac{4 R_s}{\left(1-R_s\right)^2}
+    \end{equation}
+
+    For the all-dielectric case, we assume that the reflectance is sufficiently high such that
+    \begin{equation}
+        F \approx \frac{4}{T^2}
+    \end{equation}
+    The \emph{resolving power} describes the height and width of the peak frequency of a band-pass filter. It is given by
+    \begin{equation*}
+        \frac{\lambda_0}{\Delta \lambda_h}
+    \end{equation*}
+    Under our assumptions
+    \begin{equation}
+        \frac{\lambda_0}{\Delta \lambda_h} = \frac{m \pi F^{1/2}}{2} \approx \frac{m \pi}{T}
+    \end{equation}
+
+    We can now create Fabry-Perot filters using two reflecting layers of alternating refractive index, quarter-wave layers, separated by a half-wave layer. It can be shown that the layers will be of the highest reflectance if they end with the higher index of refraction, so there are two geometries to consider:
+    \begin{align*}
+        \ce{HLH} \cdots \ce{HLLH} \cdots \ce{HLH} \\
+        \ce{HLH} \cdots \ce{LHHL} \cdots \ce{HLH}
+    \end{align*}
+
+    The peak transmittances become
+    \begin{align}
+        &\text{High-Index Spacer} &T &= \frac{4 n_L^{2x}}{n_H^{2x+1}}  \\
+        &\text{Low-Index Spacer} &T &= \frac{4 n_L^{2x -1} n_s}{n_H^{2x}}       
+    \end{align}
+    
+    And the resolving powers become
+    \begin{align}
+        &\text{High-Index Spacer} &\frac{\Delta \lambda_h}{\lambda_0} &= \frac{4 n_L^{2x} n_s}{m \pi n_H^{2x}}  \\
+        &\text{Low-Index Spacer} &\frac{\Delta \lambda_h}{\lambda_0} &= \frac{4 n_L^{2x-1} n_s}{m \pi n_H^{2x}}
+    \end{align}
+
+\subsection{Effect of Tilting}
+    The phase thickness of a thin film at oblique incident angle $\theta$ is
+    \begin{equation}
+        \delta = 2 \pi n d \cos \theta / \lambda        
+    \end{equation}
+    The position of the peak of an ideal Fabry-Perot filter with spacer layer index $n^*$ is
+    \begin{equation}
+        (2 \pi n^* d/\lambda_0) g \cos \theta = m \pi
+    \end{equation}
+    We'll restrict our attention to
+    \begin{align*}
+        g \cos \theta &= 1 \\
+        \Delta g &= \left(\frac{1}{\cos \theta} - 1\right)
+    \end{align*}
+    For small angles of incidence the shift is given by
+    \begin{equation}
+        \Delta g = \frac{\Delta \lambda}{\lambda_0} = \frac{\theta_i^2}{2 n^{*2}}        
+    \end{equation}
+
 \end{document}
